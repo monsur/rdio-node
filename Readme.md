@@ -38,6 +38,9 @@ r.beginAuthentication(function(error, loginUrl) {
     stdin.once('data', function(data) {
       data = data.toString().trim();
       r.completeAuthentication(data, function() {
+
+        // Notice how unlike the call to 'search' above,
+        // 'getPlaylists' doesn't need any parameters.
         r.makeRequest('getPlaylists', function() {
           console.log(arguments[1]);
           process.exit();
@@ -49,5 +52,5 @@ r.beginAuthentication(function(error, loginUrl) {
 ```
 ## Storing OAuth-related information
 
-The library current includes a MemoryStore object that stores OAuth request and access tokens in memory.  You can pass in your own datastore object if you wish to store this data elsewhere.  Just follow the same interface as MemoryStore, and pass it to the Rdio constructor as the 'dataStore' parameter.  Note that the datastore currently does not support async operations (i.e. it doesn't take callbacks), so all loading/saving of data should be done outside the Rdio object.
+The library includes a MemoryStore object that stores OAuth request and access tokens in memory.  You can pass in your own datastore object if you wish to store this data elsewhere.  Just follow the same interface as MemoryStore, and pass it to the Rdio constructor as the 'dataStore' parameter.  Note that the datastore currently does not support async operations (i.e. it doesn't take callbacks), so all loading/saving of data should be done outside the Rdio object.
 
