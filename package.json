@@ -1,0 +1,10 @@
+{ "name" : "rdio-node"
+, "description" : "An Rdio API Client Library for Node.js"
+, "version" : "0.1.0"
+, "directories" : { "lib" : "./lib" }
+, "main" : "index.js"
+, "author" : "Monsur Hossain <monsur@gmail.com>
+, "repository" : { "type":"git", "url":"http://github.com/monsur/rdio-node.git" }
+, "dependencies": { "oauth": ">= 0.9.x" }
+}
+
