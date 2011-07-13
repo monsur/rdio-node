@@ -1,8 +1,26 @@
 var RdioClient = require('../../lib/rdio-node').Rdio;
 var FileStore = require('../../lib/datastore/insecure-file-store').InsecureFileStore;
 
+// A list of methods that requires authentication.
+// This list should be kept in sync with
+// http://developer.rdio.com/docs/read/rest/Methods
 var AUTH_METHODS = [
-  'getPlaylists'
+  'addToCollection'
+, 'addFriend'
+, 'addToPlaylist'
+, 'createPlaylist'
+, 'currentUser'
+, 'deletePlaylist'
+, 'getObjectFromShortCode'
+, 'getObjectFromUrl'
+, 'getPlaylists'
+, 'removeFriend'
+, 'removeFromCollection'
+, 'removeFromPlaylist'
+, 'setPlaylistCollaborating'
+, 'setPlaylistCollaborationMode'
+, 'setPlaylistFields'
+, 'setPlaylistOrder'
 ];
 
 function getArgs(argv) {
