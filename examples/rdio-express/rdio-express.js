@@ -14,7 +14,7 @@ var endpoints = {
 , loginEnd: 'loginEnd'
 };
 
-** Handler for the main page that either shows data or asks the user to log in. */
+/** Handler for the main page that either shows data or asks the user to log in. */
 function handleMain(req, res) {
   res.contentType('text/html');
 
