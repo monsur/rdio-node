@@ -12,6 +12,7 @@ var endpoints = {
   main: 'example'
 , loginBegin: 'loginBegin'
 , loginEnd: 'loginEnd'
+, logout: 'logout'
 };
 
 /** Handler for the main page that either shows data or asks the user to log in. */
@@ -33,7 +34,10 @@ function handleMain(req, res) {
 
       // Otherwise, show the data.
       console.log(results);
-      res.send('The logged in user\'s name is ' + results.result.firstName);
+      res.write('The logged in user\'s name is ' + results.result.firstName + '<br><br>');
+      res.write('<a href="' + endpoints.logout + '">Click here to log out.</a> ');
+      res.write('(note: logout only clears the auth token from the cookie, it does not revoke the token from the server.)');
+      res.end();
     });
   });
 }
@@ -51,11 +55,29 @@ function handleLoginBegin(req, res) {
 
 /** Handler to end the login process. */
 function handleLoginEnd(req, res) {
+  var verifier = req.param('oauth_verifier');
+
+  if (!verifier) {
+    res.contentType('text/html');
+    res.write('ERROR: could not find oauth_verifier. The user probably denied access.<br><br>');
+    res.write('<a href="' + endpoints.main + '">Click here to return to the main example page.</a>');
+    res.end();
+    return;
+  }
+
   rdio.completeAuthentication(req.param('oauth_verifier'), function() {
     store.write(res, function() {
       // Save the auth token to the cookie and then redirect to the main page.
       res.redirect('/' + endpoints.main);
     });
+  });
+}
+
+/** Clears the cookie store. */
+function handleLogout(req, res) {
+  store.removeAll();
+  store.write(res, function() {
+    res.redirect('/' + endpoints.main);
   });
 }
 
@@ -65,6 +87,7 @@ function createServer(args) {
   app.get('/' + endpoints.main, handleMain);
   app.get('/' + endpoints.loginBegin, handleLoginBegin);
   app.get('/' + endpoints.loginEnd, handleLoginEnd);
+  app.get('/' + endpoints.logout, handleLogout);
  
   app.listen(args['port']);
   console.log('navigate to ' + getUrl(args['port'], endpoints.main) +
