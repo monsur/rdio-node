@@ -14,11 +14,7 @@ var endpoints = {
 , loginEnd: 'loginEnd'
 };
 
-function getUrl(port, path) {
-  return 'http://localhost:' + port + '/' + path;
-}
-
-/** Handler for the main page that either shows data or asks the user to log in. */
+** Handler for the main page that either shows data or asks the user to log in. */
 function handleMain(req, res) {
   res.contentType('text/html');
 
@@ -82,6 +78,10 @@ function getRdioClient(args) {
     , authorizeCallback: getUrl(args['port'], endpoints.loginEnd)
     , dataStore: store
   });
+}
+
+function getUrl(port, path) {
+  return 'http://localhost:' + port + '/' + path;
 }
 
 function getArgs(argv) {
