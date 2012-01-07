@@ -3,7 +3,7 @@
 , "version" : "0.1.0"
 , "directories" : { "lib" : "./lib" }
 , "main" : "index.js"
-, "author" : "Monsur Hossain <http://monsur.hossa.in>
+, "author" : "Monsur Hossain <http://monsur.hossa.in>"
 , "repository" : { "type":"git", "url":"http://github.com/monsur/rdio-node.git" }
 , "dependencies": { "oauth": ">= 0.9.x" }
 }
