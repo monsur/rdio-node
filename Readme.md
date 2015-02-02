@@ -1,3 +1,7 @@
+*UPDATE 2014-02-01*: Rdio now has an official Node.js client library, which can be found at https://github.com/rdio/rdio-simple/tree/master/node. The library in this repo is no longer maintained, and is here for archival purposes.
+
+<hr>
+
 # Rdio-Node
 
 Rdio-Node is an Rdio API client library for Node.js. It is based off of the Rdio API Python client (https://github.com/rdio/rdio-python).
